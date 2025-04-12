@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.Entidades.Autor, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.DTOs.AutorDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,12 +28,55 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "autor",
-        "Type": "Biblioteca.Entidades.Autor",
+        "Name": "autorCreacionDTO",
+        "Type": "Biblioteca.DTOs.AutorCreacionDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.AutoresCollecionController",
+    "Method": "Post",
+    "RelativePath": "api/autores-coleccion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "autoresCreacionDTO",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.DTOs.AutorCreacionDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.AutoresCollecionController",
+    "Method": "Get",
+    "RelativePath": "api/autores-coleccion/{ids}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Biblioteca.DTOs.AutorConLibrosDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "ObtenerAutoresPorIds"
   },
   {
     "ContainingType": "Biblioteca.Controllers.AutoresController",
@@ -51,7 +94,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Biblioteca.Entidades.Autor",
+        "Type": "Biblioteca.DTOs.AutorConLibrosDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -59,7 +102,8 @@
         ],
         "StatusCode": 200
       }
-    ]
+    ],
+    "EndpointName": "ObtenerAutor"
   },
   {
     "ContainingType": "Biblioteca.Controllers.AutoresController",
@@ -75,8 +119,29 @@
         "IsRequired": true
       },
       {
-        "Name": "autor",
-        "Type": "Biblioteca.Entidades.Autor",
+        "Name": "autorCreacionDTO",
+        "Type": "Biblioteca.DTOs.AutorCreacionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.AutoresController",
+    "Method": "Patch",
+    "RelativePath": "api/autores/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "patchDoc",
+        "Type": "Microsoft.AspNetCore.JsonPatch.Operations.Operation[]",
         "IsRequired": true
       }
     ],
@@ -108,7 +173,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.Entidades.Libro, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.DTOs.LibroDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -127,8 +192,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "libro",
-        "Type": "Biblioteca.Entidades.Libro",
+        "Name": "libroCreacionDTO",
+        "Type": "Biblioteca.DTOs.LibroCreacionDTO",
         "IsRequired": true
       }
     ],
@@ -150,7 +215,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Biblioteca.Entidades.Libro",
+        "Type": "Biblioteca.DTOs.LibroConAutoresDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -158,7 +223,8 @@
         ],
         "StatusCode": 200
       }
-    ]
+    ],
+    "EndpointName": "ObtenerLibro"
   },
   {
     "ContainingType": "Biblioteca.Controllers.LibrosController",
@@ -174,8 +240,8 @@
         "IsRequired": true
       },
       {
-        "Name": "libro",
-        "Type": "Biblioteca.Entidades.Libro",
+        "Name": "libroCreacionDTO",
+        "Type": "Biblioteca.DTOs.LibroCreacionDTO",
         "IsRequired": true
       }
     ],
@@ -198,6 +264,132 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Biblioteca.Controllers.ComentariosController",
+    "Method": "Get",
+    "RelativePath": "api/libros/{libroId}/comentarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "libroId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Biblioteca.DTOs.ComentarioDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ComentariosController",
+    "Method": "Post",
+    "RelativePath": "api/libros/{libroId}/comentarios",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "libroId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "comentarioCreacionDTO",
+        "Type": "Biblioteca.DTOs.ComentarioCreacionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ComentariosController",
+    "Method": "Get",
+    "RelativePath": "api/libros/{libroId}/comentarios/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "libroId",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Biblioteca.DTOs.ComentarioDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "ObtenerComentario"
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ComentariosController",
+    "Method": "Patch",
+    "RelativePath": "api/libros/{libroId}/comentarios/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "libroId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "patchDoc",
+        "Type": "Microsoft.AspNetCore.JsonPatch.Operations.Operation[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ComentariosController",
+    "Method": "Delete",
+    "RelativePath": "api/libros/{libroId}/comentarios/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "libroId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Biblioteca.Controllers.AutoresController",
     "Method": "Get",
     "RelativePath": "listado-de-autores",
@@ -207,7 +399,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.Entidades.Autor, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Biblioteca.DTOs.AutorDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

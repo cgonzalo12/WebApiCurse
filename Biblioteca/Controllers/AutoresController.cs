@@ -1,5 +1,8 @@
-﻿using Biblioteca.Datos;
+﻿using AutoMapper;
+using Biblioteca.Datos;
+using Biblioteca.DTOs;
 using Biblioteca.Entidades;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,67 +13,101 @@ namespace Biblioteca.Controllers
     public class AutoresController :ControllerBase
     {
         private readonly ApplicationDbContext context;
+        private readonly IMapper mapper;
 
-        public AutoresController(ApplicationDbContext context)
+        public AutoresController(ApplicationDbContext context,IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
         [HttpGet]
         [HttpGet("/listado-de-autores")]
-        public async Task<IEnumerable<Autor>> Get()
+        public async Task<IEnumerable<AutorDTO>> Get()
         {
-            return await context.Autores.ToListAsync();
+            var autores = await context.Autores.ToListAsync();
+            var autoresDTO = mapper.Map<IEnumerable<AutorDTO>>(autores);
+            return autoresDTO;
         }
 
 
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Autor autor)
+        public async Task<ActionResult> Post( AutorCreacionDTO autorCreacionDTO)
         {
+            var autor = mapper.Map<Autor>(autorCreacionDTO);
             context.Add(autor);
             await context.SaveChangesAsync();
-            return Ok();
+            var autorDTO = mapper.Map<AutorDTO>(autor);
+            return CreatedAtRoute("ObtenerAutor", new { id = autor.Id }, autorDTO);
         }
 
 
 
         
-        [HttpGet("{id:int}")]//api/autores/id?incluirLibros=True|false
-        public async Task<ActionResult<Autor>> Get([FromRoute]int id)
+        [HttpGet("{id:int}",Name ="ObtenerAutor")]//api/autores/id?incluirLibros=True|false
+        public async Task<ActionResult<AutorConLibrosDTO>> Get([FromRoute]int id)
         {
             var autor= await context.Autores
                 .Include(x=>x.Libros)
+                    .ThenInclude(x=>x.Libro)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (autor is null)
             {
                 return NotFound();
             }
-            return Ok(autor);
+            var autorDTO = mapper.Map<AutorConLibrosDTO>(autor);
+            return autorDTO;
         }
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Put(int id,Autor autor)
+        public async Task<ActionResult> Put(int id,AutorCreacionDTO autorCreacionDTO)
         {
-            if (id != autor.Id)
-            {
-                return BadRequest("los ids deben cioncidir");
-            }
-
+            var autor = mapper.Map<Autor>(autorCreacionDTO);
+            autor.Id = id;
             context.Update(autor);
             await context.SaveChangesAsync();
-            return Ok();
+            return NoContent();
 
 
+        }
+
+
+        [HttpPatch("{id:int}")]
+        public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<AutorPatchDTO> patchDoc)
+        {
+            if (patchDoc is null)
+            {
+                return BadRequest();
+            }
+            var autorDB = await context.Autores.FirstOrDefaultAsync(autor => autor.Id == id);
+            if (autorDB is null)
+            {
+                return NotFound();
+            }
+            var autorPatchDto = mapper.Map<AutorPatchDTO>(autorDB);
+
+            patchDoc.ApplyTo(autorPatchDto,ModelState);
+
+            var esValido=TryValidateModel(autorPatchDto);
+
+            if (!esValido)
+            {
+                return ValidationProblem();
+            }
+            mapper.Map(autorPatchDto, autorDB);
+            await context.SaveChangesAsync();
+
+            return NoContent();
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var registrosBorrados = await context.Autores.Where(context=>context.Id == id).ExecuteDeleteAsync();
+            var registrosBorrados = await context.Autores.Where(x=>x.Id == id).ExecuteDeleteAsync();
             if (registrosBorrados ==0)
             {
                 return NotFound();
             }
-            return Ok();
+            return NoContent();
         }
 
 

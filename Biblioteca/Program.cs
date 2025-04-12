@@ -4,7 +4,8 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 //Area de servicios
-builder.Services.AddControllers().AddJsonOptions(opciones=>opciones.JsonSerializerOptions.ReferenceHandler=ReferenceHandler.IgnoreCycles);
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddControllers().AddNewtonsoftJson(); 
 
 builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer("name=DefaultConnection"));
 
