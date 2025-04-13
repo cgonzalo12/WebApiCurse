@@ -164,6 +164,96 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "GetSecret",
+    "RelativePath": "api/configuraciones",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "Get",
+    "RelativePath": "api/configuraciones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "GetObtenerTdodos",
+    "RelativePath": "api/configuraciones/obtenertodos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "GetProveedor",
+    "RelativePath": "api/configuraciones/proveedores",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "GetSeccion01",
+    "RelativePath": "api/configuraciones/seccion01",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "GetSeccion02",
+    "RelativePath": "api/configuraciones/seccion02",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.ConfiguracionesController",
+    "Method": "GetSeccion",
+    "RelativePath": "api/configuraciones/secciones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Biblioteca.Controllers.LibrosController",
     "Method": "Get",
     "RelativePath": "api/libros",

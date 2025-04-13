@@ -3,32 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\controllers\\autorescollecioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\controllers\\autorescollecioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\controllers\\autorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\controllers\\autorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\biblioteca.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\biblioteca.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\controllers\\libroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\controllers\\libroscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\dtos\\autorcreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\dtos\\autorcreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\utilidades\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\utilidades\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\dtos\\libroconautordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\dtos\\libroconautordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|c:\\users\\capgo\\source\\repos\\biblioteca\\biblioteca\\dtos\\librocreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B0E6812E-13F0-4619-AEAD-9E2EF1E39BBA}|Biblioteca\\Biblioteca.csproj|solutionrelative:biblioteca\\dtos\\librocreaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\capgo\\AppData\\Roaming\\Microsoft\\UserSecrets\\8f8c8b49-5540-4f74-b1e5-01129571c613\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,87 +26,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AutoresCollecionController.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Controllers\\AutoresCollecionController.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\Controllers\\AutoresCollecionController.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Controllers\\AutoresCollecionController.cs",
-              "RelativeToolTip": "Biblioteca\\Controllers\\AutoresCollecionController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAawCEAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T23:39:41.587Z",
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Biblioteca\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\appsettings.Development.json",
+              "RelativeToolTip": "Biblioteca\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-13T23:07:30.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AutorCreacionDTO.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\DTOs\\AutorCreacionDTO.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\DTOs\\AutorCreacionDTO.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\DTOs\\AutorCreacionDTO.cs",
-              "RelativeToolTip": "Biblioteca\\DTOs\\AutorCreacionDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T22:51:43.2Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LibroConAutorDTO.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\DTOs\\LibroConAutorDTO.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\DTOs\\LibroConAutorDTO.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\DTOs\\LibroConAutorDTO.cs",
-              "RelativeToolTip": "Biblioteca\\DTOs\\LibroConAutorDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T22:44:40.463Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AutoresController.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Controllers\\AutoresController.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\Controllers\\AutoresController.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Controllers\\AutoresController.cs",
-              "RelativeToolTip": "Biblioteca\\Controllers\\AutoresController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T22:03:04.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AutoMapperProfile.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Utilidades\\AutoMapperProfile.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\Utilidades\\AutoMapperProfile.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Utilidades\\AutoMapperProfile.cs",
-              "RelativeToolTip": "Biblioteca\\Utilidades\\AutoMapperProfile.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCgAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T21:46:03.539Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LibroCreacionDTO.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\DTOs\\LibroCreacionDTO.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\DTOs\\LibroCreacionDTO.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\DTOs\\LibroCreacionDTO.cs",
-              "RelativeToolTip": "Biblioteca\\DTOs\\LibroCreacionDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T21:03:54.67Z"
+              "Title": "Biblioteca.csproj",
+              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Biblioteca.csproj",
+              "RelativeDocumentMoniker": "Biblioteca\\Biblioteca.csproj",
+              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Biblioteca.csproj",
+              "RelativeToolTip": "Biblioteca\\Biblioteca.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-13T15:37:04.394Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LibrosController.cs",
-              "DocumentMoniker": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Controllers\\LibrosController.cs",
-              "RelativeDocumentMoniker": "Biblioteca\\Controllers\\LibrosController.cs",
-              "ToolTip": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\Controllers\\LibrosController.cs",
-              "RelativeToolTip": "Biblioteca\\Controllers\\LibrosController.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwCoAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T20:58:42.657Z"
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\Users\\capgo\\AppData\\Roaming\\Microsoft\\UserSecrets\\8f8c8b49-5540-4f74-b1e5-01129571c613\\secrets.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\8f8c8b49-5540-4f74-b1e5-01129571c613\\secrets.json",
+              "ToolTip": "C:\\Users\\capgo\\AppData\\Roaming\\Microsoft\\UserSecrets\\8f8c8b49-5540-4f74-b1e5-01129571c613\\secrets.json",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\8f8c8b49-5540-4f74-b1e5-01129571c613\\secrets.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-13T15:36:25.179Z",
+              "EditorCaption": ""
             }
           ]
         }
