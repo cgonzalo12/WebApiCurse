@@ -2,6 +2,7 @@
 using Biblioteca.Datos;
 using Biblioteca.DTOs;
 using Biblioteca.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace Biblioteca.Controllers
 {
     [ApiController]
     [Route("api/autores-coleccion")]
+    [Authorize(Policy = "esadmin")]
     public class AutoresCollecionController :ControllerBase
     {
         private readonly ApplicationDbContext context;

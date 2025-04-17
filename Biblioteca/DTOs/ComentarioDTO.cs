@@ -8,5 +8,7 @@ namespace Biblioteca.DTOs
         [Required]
         public required string Cuerpo { get; set; }
         public DateTime FechaPublicacion { get; set; }
+        public required string UsuarioId { get; set; }
+        public required string UsuarioEmail { get; set; }
     }
 }
