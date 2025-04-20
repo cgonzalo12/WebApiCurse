@@ -9,6 +9,19 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 //Area de servicios
+builder.Services.AddDataProtection();
+
+var origenesPermitidos = builder.Configuration.GetSection("origenesPermitidos").Get<string[]>()!;
+
+builder.Services.AddCors(opcionres =>
+{
+    opcionres.AddDefaultPolicy(opcionesCORS =>
+    {
+        opcionesCORS.WithOrigins(origenesPermitidos).AllowAnyMethod().AllowAnyHeader()
+        .WithExposedHeaders("mi-cabezera");
+    });
+});
+
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers().AddNewtonsoftJson(); 
 
@@ -42,12 +55,15 @@ builder.Services.AddAuthorization(opciones =>
     opciones.AddPolicy("esadmin", politica => politica.RequireClaim("esadmin"));
 });
 
-
+builder.Services.AddSwaggerGen();
 
 
 var app = builder.Build();
 
 // Area de middlewares
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseCors();
 
 app.MapControllers();
 

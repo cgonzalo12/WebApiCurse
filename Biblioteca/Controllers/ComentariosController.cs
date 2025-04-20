@@ -28,6 +28,7 @@ namespace Biblioteca.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<ComentarioDTO>>> Get(int libroId)
         {
             var existeLibro = await context.Libros.AnyAsync(x=>x.Id==libroId);
@@ -44,6 +45,7 @@ namespace Biblioteca.Controllers
         }
 
         [HttpGet("{id}",Name ="ObtenerComentario")]
+        [AllowAnonymous]
         public async Task<ActionResult<ComentarioDTO>> Get(Guid id)
         {
             var comentario= await context.comentarios

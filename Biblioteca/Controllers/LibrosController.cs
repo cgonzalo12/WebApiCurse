@@ -3,6 +3,7 @@ using Biblioteca.Datos;
 using Biblioteca.DTOs;
 using Biblioteca.Entidades;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,22 +16,26 @@ namespace Biblioteca.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
+        
 
         public LibrosController(ApplicationDbContext context,IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
+           
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<LibroDTO>> Get()
         {
             var libros = await context.Libros.ToListAsync();
             var librosDTO = mapper.Map<IEnumerable<LibroDTO>>(libros);
             return librosDTO;
         }
-
+        
         [HttpGet("{id:int}",Name ="ObtenerLibro")]
+        [AllowAnonymous]
         public async Task<ActionResult<LibroConAutoresDTO>> Get(int id)
         {
             var libro = await context.Libros
