@@ -2,6 +2,7 @@
 using Biblioteca.Datos;
 using Biblioteca.DTOs;
 using Biblioteca.Entidades;
+using Biblioteca.Utilidades;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +28,14 @@ namespace Biblioteca.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<LibroDTO>> Get()
-        {
-            var libros = await context.Libros.ToListAsync();
+        public async Task<IEnumerable<LibroDTO>> Get([FromQuery]PaginacionDTO paginacionDTO)
+        { 
+            var queryable = context.Libros.AsQueryable();
+            await HttpContext.InsertarParametrosPaginacionCabecera(queryable);
+            var libros= await queryable
+                .OrderBy(x=>x.Titulo)
+                .Paginar(paginacionDTO)
+                .ToListAsync();
             var librosDTO = mapper.Map<IEnumerable<LibroDTO>>(libros);
             return librosDTO;
         }

@@ -1,6 +1,7 @@
 using Biblioteca.Datos;
 using Biblioteca.Entidades;
 using Biblioteca.Servicios;
+using Biblioteca.Swagger;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -19,7 +20,7 @@ builder.Services.AddCors(opcionres =>
     opcionres.AddDefaultPolicy(opcionesCORS =>
     {
         opcionesCORS.WithOrigins(origenesPermitidos).AllowAnyMethod().AllowAnyHeader()
-        .WithExposedHeaders("mi-cabezera");
+        .WithExposedHeaders("cantidad-total-registros");
     });
 });
 
@@ -84,21 +85,22 @@ builder.Services.AddSwaggerGen(opciones =>
         In = ParameterLocation.Header,
         Description = "Introduce el Token JWT con el prefijo 'Bearer ' (e.g., 'Bearer eyJ...')." // Agregada descripción útil
     });
+    opciones.OperationFilter<FiltroAutorizacion>();
 
-    opciones.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type= ReferenceType.SecurityScheme,
-                    Id="Bearer"
-                }
-            },
-            new string[]{}
-        }
-    });
+    //opciones.AddSecurityRequirement(new OpenApiSecurityRequirement
+    //{
+    //    {
+    //        new OpenApiSecurityScheme
+    //        {
+    //            Reference = new OpenApiReference
+    //            {
+    //                Type= ReferenceType.SecurityScheme,
+    //                Id="Bearer"
+    //            }
+    //        },
+    //        new string[]{}
+    //    }
+    //});
 });
 
 
