@@ -133,7 +133,7 @@ namespace BibliotecaAPI.Controllers
         }
 
         [HttpPost("hacer-admin")]
-        [Authorize(Policy = "esadmin")]
+        //[Authorize(Policy = "esadmin")]
         public async Task<ActionResult> HacerAdmin(EditarClaimDTO editarClaimDTO)
         {
             var usuario = await userManager.FindByEmailAsync(editarClaimDTO.Email);
