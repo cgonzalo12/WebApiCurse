@@ -141,9 +141,24 @@
         "IsRequired": true
       },
       {
-        "Name": "autorCreacionDTO",
-        "Type": "Biblioteca.DTOs.AutorCreacionDTO",
-        "IsRequired": true
+        "Name": "Foto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nombres",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Apellidos",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Libros",
+        "Type": "System.Collections.Generic.List\u00601[[Biblioteca.DTOs.LibroCreacionDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -181,6 +196,37 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Biblioteca.Controllers.AutoresController",
+    "Method": "PostConFoto",
+    "RelativePath": "api/autores/con-foto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Foto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nombres",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Apellidos",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Libros",
+        "Type": "System.Collections.Generic.List\u00601[[Biblioteca.DTOs.LibroCreacionDTO, Biblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

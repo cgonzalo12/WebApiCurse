@@ -354,3 +354,7 @@ C:\Users\capgo\source\repos\WebApiCurse\Biblioteca\obj\Debug\net9.0\Biblioteca.p
 C:\Users\capgo\source\repos\WebApiCurse\Biblioteca\obj\Debug\net9.0\Biblioteca.genruntimeconfig.cache
 C:\Users\capgo\source\repos\WebApiCurse\Biblioteca\obj\Debug\net9.0\ref\Biblioteca.dll
 C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\Azure.Storage.Blobs.dll
+C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\Azure.Storage.Common.dll
+C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\System.IO.Hashing.dll
+C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\Biblioteca.staticwebassets.runtime.json

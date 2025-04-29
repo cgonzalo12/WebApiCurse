@@ -165,6 +165,72 @@
         ]
       }
     },
+    "/api/autores/con-foto": {
+      "post": {
+        "tags": [
+          "Autores"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Apellidos",
+                  "Nombres"
+                ],
+                "type": "object",
+                "properties": {
+                  "Foto": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Nombres": {
+                    "maxLength": 150,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Apellidos": {
+                    "maxLength": 20,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Libros": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/LibroCreacionDTO"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Foto": {
+                  "style": "form"
+                },
+                "Nombres": {
+                  "style": "form"
+                },
+                "Apellidos": {
+                  "style": "form"
+                },
+                "Libros": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
     "/api/autores/{id}": {
       "get": {
         "tags": [
@@ -246,24 +312,49 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
+                "required": [
+                  "Apellidos",
+                  "Nombres"
+                ],
+                "type": "object",
+                "properties": {
+                  "Foto": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Nombres": {
+                    "maxLength": 150,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Apellidos": {
+                    "maxLength": 20,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Libros": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/LibroCreacionDTO"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "Foto": {
+                  "style": "form"
+                },
+                "Nombres": {
+                  "style": "form"
+                },
+                "Apellidos": {
+                  "style": "form"
+                },
+                "Libros": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -1262,6 +1353,10 @@
             "type": "string",
             "nullable": true
           },
+          "foto": {
+            "type": "string",
+            "nullable": true
+          },
           "libros": {
             "type": "array",
             "items": {
@@ -1310,6 +1405,10 @@
             "format": "int32"
           },
           "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "foto": {
             "type": "string",
             "nullable": true
           }

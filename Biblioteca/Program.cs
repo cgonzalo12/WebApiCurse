@@ -35,6 +35,11 @@ builder.Services.AddIdentityCore<Usuario>()
 builder.Services.AddScoped<UserManager<Usuario>>();
 builder.Services.AddScoped<SignInManager<Usuario>>();
 builder.Services.AddTransient<IServiciosUsuarios,ServiciosUsuarios>();
+
+//ilder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosAzure>();
+
+builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosLocal>();
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication().AddJwtBearer(opciones =>
@@ -109,6 +114,7 @@ var app = builder.Build();
 // Area de middlewares
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseStaticFiles();
 app.UseCors();
 
 app.MapControllers();

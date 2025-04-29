@@ -1,21 +1,11 @@
 ﻿namespace Biblioteca.DTOs
 {
-    public class PaginacionDTO
+    public record PaginacionDTO(int Pagina = 1, int RecordsPorPagina = 10)
     {
         private const int CantidadMaximaRecordsPorPagina = 50;
 
-        private int pagina = 1;
-        public int Pagina
-        {
-            get => pagina;
-            set => pagina = (value < 1) ? 1 : value;
-        }
+        public int Pagina { get; init; } = Math.Max(1, Pagina);
+        public int RecordsPorPagina { get; init; } = Math.Clamp(RecordsPorPagina, 1, CantidadMaximaRecordsPorPagina);
 
-        private int recordsPorPagina = 10;
-        public int RecordsPorPagina
-        {
-            get => recordsPorPagina;
-            set => recordsPorPagina = Math.Clamp(value, 1, CantidadMaximaRecordsPorPagina);
-        }
     }
 }

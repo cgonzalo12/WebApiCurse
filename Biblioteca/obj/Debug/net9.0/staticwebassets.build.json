@@ -1,12 +1,125 @@
 {
   "Version": 1,
-  "Hash": "QQUCgiuoUkZepmXj9Tr3LA5YjKY4HQ40stZJP8s7t4c=",
+  "Hash": "l/tXSILB/m76WHMlJ8wbM2af2dUAPhkCFvgwR9SkMD0=",
   "Source": "Biblioteca",
   "BasePath": "_content/Biblioteca",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Biblioteca\\wwwroot",
+      "Source": "Biblioteca",
+      "ContentRoot": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\",
+      "BasePath": "_content/Biblioteca",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "SourceId": "Biblioteca",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\",
+      "BasePath": "_content/Biblioteca",
+      "RelativePath": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "exksfdcxdc",
+      "Integrity": "DuRorR3rijbj13gOpV1JN7EV17+yhwmgx1OXWSQmp24=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.exksfdcxdc.jpg",
+      "AssetFile": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8079"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DuRorR3rijbj13gOpV1JN7EV17+yhwmgx1OXWSQmp24=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 27 Apr 2025 22:54:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "exksfdcxdc"
+        },
+        {
+          "Name": "label",
+          "Value": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DuRorR3rijbj13gOpV1JN7EV17+yhwmgx1OXWSQmp24="
+        }
+      ]
+    },
+    {
+      "Route": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "AssetFile": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8079"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DuRorR3rijbj13gOpV1JN7EV17+yhwmgx1OXWSQmp24=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 27 Apr 2025 22:54:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DuRorR3rijbj13gOpV1JN7EV17+yhwmgx1OXWSQmp24="
+        }
+      ]
+    }
+  ]
 }
