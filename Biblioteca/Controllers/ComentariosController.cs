@@ -6,6 +6,7 @@ using Biblioteca.Servicios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
 
@@ -29,6 +30,7 @@ namespace Biblioteca.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache]
         public async Task<ActionResult<List<ComentarioDTO>>> Get(int libroId)
         {
             var existeLibro = await context.Libros.AnyAsync(x=>x.Id==libroId);
@@ -46,6 +48,7 @@ namespace Biblioteca.Controllers
 
         [HttpGet("{id}",Name ="ObtenerComentario")]
         [AllowAnonymous]
+        [OutputCache]
         public async Task<ActionResult<ComentarioDTO>> Get(Guid id)
         {
             var comentario= await context.comentarios
@@ -156,7 +159,8 @@ namespace Biblioteca.Controllers
             {
                 return Forbid();
             }
-            context.Remove(comentarioDB);
+            comentarioDB.EsBorrado = true;
+            context.Update(comentarioDB);
             await context.SaveChangesAsync();
             return NoContent();
         }

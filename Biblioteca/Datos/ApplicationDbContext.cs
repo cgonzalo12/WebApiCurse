@@ -13,6 +13,8 @@ namespace Biblioteca.Datos
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Comentario>().HasQueryFilter(comentario => !comentario.EsBorrado);
         }
 
         public DbSet<Autor> Autores { get; set; }

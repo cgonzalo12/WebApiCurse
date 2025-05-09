@@ -358,3 +358,8 @@ C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\Azure.Storage
 C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\Azure.Storage.Common.dll
 C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\System.IO.Hashing.dll
 C:\Users\capgo\source\repos\Biblioteca\Biblioteca\bin\Debug\net9.0\Biblioteca.staticwebassets.runtime.json
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Biblioteca.staticwebassets.runtime.json
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Azure.Storage.Blobs.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Azure.Storage.Common.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\System.IO.Hashing.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\System.Linq.Dynamic.Core.dll

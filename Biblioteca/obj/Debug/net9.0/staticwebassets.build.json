@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l/tXSILB/m76WHMlJ8wbM2af2dUAPhkCFvgwR9SkMD0=",
+  "Hash": "j4S2676DEShNc9npUbF6s+YzAhFga38d5bxXy+ojfDU=",
   "Source": "Biblioteca",
   "BasePath": "_content/Biblioteca",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Biblioteca\\wwwroot",
       "Source": "Biblioteca",
-      "ContentRoot": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\capgo\\Source\\Repos\\WebApiCurse\\Biblioteca\\wwwroot\\",
       "BasePath": "_content/Biblioteca",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "Identity": "C:\\Users\\capgo\\Source\\Repos\\WebApiCurse\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
       "SourceId": "Biblioteca",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\capgo\\Source\\Repos\\WebApiCurse\\Biblioteca\\wwwroot\\",
       "BasePath": "_content/Biblioteca",
       "RelativePath": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
@@ -41,7 +41,7 @@
   "Endpoints": [
     {
       "Route": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.exksfdcxdc.jpg",
-      "AssetFile": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "AssetFile": "C:\\Users\\capgo\\Source\\Repos\\WebApiCurse\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 27 Apr 2025 22:54:08 GMT"
+          "Value": "Tue, 29 Apr 2025 21:31:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -86,7 +86,7 @@
     },
     {
       "Route": "autores/0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
-      "AssetFile": "C:\\Users\\capgo\\source\\repos\\Biblioteca\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
+      "AssetFile": "C:\\Users\\capgo\\Source\\Repos\\WebApiCurse\\Biblioteca\\wwwroot\\autores\\0b1a8fbf-7c92-4a03-a7cf-529f97b4ed2b.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -107,7 +107,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 27 Apr 2025 22:54:08 GMT"
+          "Value": "Tue, 29 Apr 2025 21:31:40 GMT"
         },
         {
           "Name": "Cache-Control",

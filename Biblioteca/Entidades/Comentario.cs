@@ -13,6 +13,7 @@ namespace Biblioteca.Entidades
 
         public Libro? Libro { get; set; }
         public required string UsuarioId { get; set; }
+        public bool EsBorrado { get; set; }
         public Usuario? Usuario { get; set; }
     }
 }
