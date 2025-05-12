@@ -363,3 +363,7 @@ C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Azure.Storag
 C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Azure.Storage.Common.dll
 C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\System.IO.Hashing.dll
 C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\System.Linq.Dynamic.Core.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Microsoft.AspNetCore.OutputCaching.StackExchangeRedis.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\capgo\Source\Repos\WebApiCurse\Biblioteca\bin\Debug\net9.0\StackExchange.Redis.dll

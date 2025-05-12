@@ -18,18 +18,20 @@ namespace Biblioteca.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
-        
+        private readonly IOutputCacheStore outputCacheStore;
+        private const string cache= "libros-obtener";
 
-        public LibrosController(ApplicationDbContext context,IMapper mapper)
+        public LibrosController(ApplicationDbContext context,IMapper mapper,
+            IOutputCacheStore outputCacheStore)
         {
             this.context = context;
             this.mapper = mapper;
-           
+            this.outputCacheStore = outputCacheStore;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [OutputCache]
+        [OutputCache(Tags = [cache])]
         public async Task<IEnumerable<LibroDTO>> Get([FromQuery]PaginacionDTO paginacionDTO)
         { 
             var queryable = context.Libros.AsQueryable();
@@ -44,7 +46,7 @@ namespace Biblioteca.Controllers
         
         [HttpGet("{id:int}",Name ="ObtenerLibro")]
         [AllowAnonymous]
-        [OutputCache]
+        [OutputCache(Tags = [cache])]
         public async Task<ActionResult<LibroConAutoresDTO>> Get(int id)
         {
             var libro = await context.Libros
@@ -81,6 +83,7 @@ namespace Biblioteca.Controllers
             AsignarOrdenAutores(libro);
             context.Add(libro);
             await context.SaveChangesAsync();
+            await outputCacheStore.EvictByTagAsync(cache, default);
             var libroDTO = mapper.Map<LibroDTO>(libro);
             return CreatedAtRoute("ObtenerLibro", new { id = libro.Id }, libroDTO);
         }
@@ -88,6 +91,7 @@ namespace Biblioteca.Controllers
 
 
         [HttpPut("{id:int}")]
+
         public async Task<ActionResult> Put(int id, LibroCreacionDTO libroCreacionDTO)
         {
             if (libroCreacionDTO.AutoresIds is null || libroCreacionDTO.AutoresIds.Count == 0)
@@ -120,6 +124,7 @@ namespace Biblioteca.Controllers
 
             AsignarOrdenAutores(libroDB);
             await context.SaveChangesAsync();
+            await outputCacheStore.EvictByTagAsync(cache, default);
             return NoContent();
 
 
@@ -133,6 +138,7 @@ namespace Biblioteca.Controllers
             {
                 return NotFound();
             }
+            await outputCacheStore.EvictByTagAsync(cache, default);
             return NoContent();
         }
 

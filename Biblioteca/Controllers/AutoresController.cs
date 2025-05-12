@@ -24,19 +24,19 @@ namespace Biblioteca.Controllers
         private readonly IMapper mapper;
         private readonly IAlmacenadorArchivos almacenadorArchivos;
         private readonly ILogger<AutoresController> logger;
-        private readonly IOutputCacheBufferStore outputCacheBufferStore;
+        private readonly IOutputCacheStore outputCacheStore;
         private const string contenedor = "autores";
         private const string cache = "autores-obtener";
 
         public AutoresController(ApplicationDbContext context,IMapper mapper,
             IAlmacenadorArchivos almacenadorArchivos,ILogger<AutoresController> logger,
-            IOutputCacheBufferStore outputCacheBufferStore)
+            IOutputCacheStore outputCacheStore)
         {
             this.context = context;
             this.mapper = mapper;
             this.almacenadorArchivos = almacenadorArchivos;
             this.logger = logger;
-            this.outputCacheBufferStore = outputCacheBufferStore;
+            this.outputCacheStore = outputCacheStore;
         }
         [HttpGet]
         [HttpGet("/listado-de-autores")]
@@ -59,7 +59,7 @@ namespace Biblioteca.Controllers
             var autor = mapper.Map<Autor>(autorCreacionDTO);
             context.Add(autor);
             await context.SaveChangesAsync();
-            await outputCacheBufferStore.EvictByTagAsync(cache, default);
+            await outputCacheStore.EvictByTagAsync(cache, default);
             var autorDTO = mapper.Map<AutorDTO>(autor);
             return CreatedAtRoute("ObtenerAutor", new { id = autor.Id }, autorDTO);
         }
@@ -77,7 +77,7 @@ namespace Biblioteca.Controllers
             }
             context.Add(autor);
             await context.SaveChangesAsync();
-            await outputCacheBufferStore.EvictByTagAsync(cache, default);//actualiza cache
+            await outputCacheStore.EvictByTagAsync(cache, default);//actualiza cache
             var autorDTO = mapper.Map<AutorDTO>(autor);
             return CreatedAtRoute("ObtenerAutor", new { id = autor.Id }, autorDTO);
         }
@@ -212,7 +212,7 @@ namespace Biblioteca.Controllers
             }
             context.Update(autor);
             await context.SaveChangesAsync();
-            await outputCacheBufferStore.EvictByTagAsync(cache, default);//actualiza cache
+            await outputCacheStore.EvictByTagAsync(cache, default);//actualiza cache
             return NoContent();
 
 
@@ -243,7 +243,7 @@ namespace Biblioteca.Controllers
             }
             mapper.Map(autorPatchDto, autorDB);
             await context.SaveChangesAsync();
-            await outputCacheBufferStore.EvictByTagAsync(cache, default);//actualiza cache
+            await outputCacheStore.EvictByTagAsync(cache, default);//actualiza cache
             return NoContent();
         }
 
@@ -257,7 +257,7 @@ namespace Biblioteca.Controllers
             }
             context.Remove(autor);
             await context.SaveChangesAsync();
-            await outputCacheBufferStore.EvictByTagAsync(cache, default);//actualiza cache
+            await outputCacheStore.EvictByTagAsync(cache, default);//actualiza cache
             await almacenadorArchivos.Borrar(autor.Foto, contenedor);
             return NoContent();
         }

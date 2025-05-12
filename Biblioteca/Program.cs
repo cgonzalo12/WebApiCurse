@@ -11,10 +11,16 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 //Area de servicios
+
 builder.Services.AddOutputCache(opciones =>
 {
     opciones.DefaultExpirationTimeSpan = TimeSpan.FromSeconds(20);
 });
+
+//builder.Services.AddStackExchangeRedisCache(opciones =>
+//{
+//    opciones.Configuration = builder.Configuration.GetConnectionString("Redis");
+//});
 
 
 

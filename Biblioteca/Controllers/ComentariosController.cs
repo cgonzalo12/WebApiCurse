@@ -20,17 +20,21 @@ namespace Biblioteca.Controllers
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
         private readonly IServiciosUsuarios serviciosUsuarios;
+        private readonly IOutputCacheStore outputCacheStore;
+        private const string cache = "comentarios-obtener";
 
-        public ComentariosController(ApplicationDbContext context,IMapper mapper,IServiciosUsuarios serviciosUsuarios)
+        public ComentariosController(ApplicationDbContext context,IMapper mapper,
+            IServiciosUsuarios serviciosUsuarios,IOutputCacheStore outputCacheStore)
         {
             this.context = context;
             this.mapper = mapper;
             this.serviciosUsuarios = serviciosUsuarios;
+            this.outputCacheStore = outputCacheStore;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [OutputCache]
+        [OutputCache(Tags = [cache])]
         public async Task<ActionResult<List<ComentarioDTO>>> Get(int libroId)
         {
             var existeLibro = await context.Libros.AnyAsync(x=>x.Id==libroId);
@@ -48,7 +52,7 @@ namespace Biblioteca.Controllers
 
         [HttpGet("{id}",Name ="ObtenerComentario")]
         [AllowAnonymous]
-        [OutputCache]
+        [OutputCache(Tags = [cache])]
         public async Task<ActionResult<ComentarioDTO>> Get(Guid id)
         {
             var comentario= await context.comentarios
@@ -82,6 +86,7 @@ namespace Biblioteca.Controllers
             comentario.UsuarioId=usuario.Id;
             context.Add(comentario);
             await context.SaveChangesAsync();
+            await outputCacheStore.EvictByTagAsync(cache,default);
             var comentarioDTO = mapper.Map<ComentarioDTO>(comentario);
             return CreatedAtRoute("ObtenerComentario", new { id = comentario.Id, libroId }, comentarioDTO);
         }
@@ -128,6 +133,7 @@ namespace Biblioteca.Controllers
                 return ValidationProblem();
             }
             mapper.Map(comentarioPatchDTO, comentarioDB);
+            await outputCacheStore.EvictByTagAsync(cache, default);
             await context.SaveChangesAsync();
 
             return NoContent();
@@ -162,6 +168,7 @@ namespace Biblioteca.Controllers
             comentarioDB.EsBorrado = true;
             context.Update(comentarioDB);
             await context.SaveChangesAsync();
+            await outputCacheStore.EvictByTagAsync(cache, default);
             return NoContent();
         }
 
