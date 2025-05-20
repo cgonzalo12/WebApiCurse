@@ -2,6 +2,9 @@ using Biblioteca.Datos;
 using Biblioteca.Entidades;
 using Biblioteca.Servicios;
 using Biblioteca.Swagger;
+using Biblioteca.Utilidades;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http.Timeouts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,17 +15,15 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 //Area de servicios
 
-builder.Services.AddOutputCache(opciones =>
-{
-    opciones.DefaultExpirationTimeSpan = TimeSpan.FromSeconds(20);
-});
-
-//builder.Services.AddStackExchangeRedisCache(opciones =>
+//builder.Services.AddOutputCache(opciones =>
 //{
-//    opciones.Configuration = builder.Configuration.GetConnectionString("Redis");
+//    opciones.DefaultExpirationTimeSpan = TimeSpan.FromSeconds(20);
 //});
 
-
+builder.Services.AddStackExchangeRedisOutputCache(opciones =>
+{
+    opciones.Configuration = builder.Configuration.GetConnectionString("redis");
+});
 
 builder.Services.AddDataProtection();
 
@@ -38,7 +39,11 @@ builder.Services.AddCors(opcionres =>
 });
 
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddControllers().AddNewtonsoftJson(); 
+builder.Services.AddControllers(opciones =>
+{
+    opciones.Filters.Add<FiltroTiempoEjecucion>();
+    opciones.Conventions.Add(new ConvencionAgrupaPorVersion());
+}).AddNewtonsoftJson(); 
 
 builder.Services.AddDbContext<ApplicationDbContext>(opciones => opciones.UseSqlServer("name=DefaultConnection"));
 
@@ -50,6 +55,8 @@ builder.Services.AddScoped<SignInManager<Usuario>>();
 builder.Services.AddTransient<IServiciosUsuarios,ServiciosUsuarios>();
 
 //ilder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosAzure>();
+builder.Services.AddScoped<MiFiltroDeAccion>();
+builder.Services.AddScoped<FiltroValidacionLibro>();
 
 builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenadorArchivosLocal>();
 
@@ -79,6 +86,7 @@ builder.Services.AddSwaggerGen(opciones =>
 {
     opciones.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
+        Version = "v1",
         Title = "Biblioteca API",
         Description = "Este es un web Api para trabajr con autores y libros",
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
@@ -93,6 +101,27 @@ builder.Services.AddSwaggerGen(opciones =>
             Url = new Uri("https://opensource.org/license/mit/")
         }
     });
+    //version 2 V2
+    opciones.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v2",
+        Title = "Biblioteca API",
+        Description = "Este es un web Api para trabajr con autores y libros",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Email = "cap.gonzalo12@gmail.com",
+            Name = "Capararo Gonzalo",
+            Url = new Uri("https://gonzalo.log")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense
+        {
+            Name = "MIT",
+            Url = new Uri("https://opensource.org/license/mit/")
+        }
+    });
+
+
+
 
     opciones.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -125,8 +154,34 @@ builder.Services.AddSwaggerGen(opciones =>
 var app = builder.Build();
 
 // Area de middlewares
+app.UseExceptionHandler(exeptionHandlerApp => exeptionHandlerApp.Run(async context =>
+{
+    var exeptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
+    var exepcion = exeptionHandlerFeature?.Error!;
+
+    var error = new Error
+    {
+        MensajeError = exepcion.Message,
+        StrackTrace = exepcion.StackTrace,
+        Fecha = DateTime.UtcNow
+    };
+    var dbContext = context.RequestServices.GetRequiredService<ApplicationDbContext>();
+    dbContext.Add(error);
+    await dbContext.SaveChangesAsync();
+    await Results.InternalServerError(new
+    {
+        tipo= "error",
+        mensaje = "Ocurrio un error inesperado",
+        status=500
+    }).ExecuteAsync(context);
+}));
+
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(opciones =>
+{
+    opciones.SwaggerEndpoint("/swagger/v1/swagger.json", "Biblioteca API V1");
+    opciones.SwaggerEndpoint("/swagger/v2/swagger.json", "Biblioteca API V2");
+});
 app.UseStaticFiles();
 app.UseCors();
 app.UseOutputCache();

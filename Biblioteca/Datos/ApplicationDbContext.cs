@@ -22,5 +22,7 @@ namespace Biblioteca.Datos
         public DbSet<Comentario> comentarios { get; set; }
         public DbSet<AutorLibro> AutoresLibros { get; set; }
 
+        public DbSet<Error> Errores { get; set; }
+
     }
 }

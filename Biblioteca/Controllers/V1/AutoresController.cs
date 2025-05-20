@@ -13,11 +13,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel;
 using System.Linq.Dynamic.Core;
 
-namespace Biblioteca.Controllers
+namespace Biblioteca.Controllers.V1
 {
     [ApiController]
-    [Route("api/autores")]
+    [Route("api/v1/autores")]
     [Authorize(Policy = "esadmin")]
+    [FiltroAgregarCabeceras("controladores","autores")]
     public class AutoresController :ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -39,9 +40,12 @@ namespace Biblioteca.Controllers
             this.outputCacheStore = outputCacheStore;
         }
         [HttpGet]
-        [HttpGet("/listado-de-autores")]
+        [HttpGet("/api/v1/listado-de-autores")]
         [AllowAnonymous]
-        [OutputCache(Tags = [cache])]
+        //[OutputCache(Tags = [cache])]
+        [ServiceFilter<MiFiltroDeAccion>()]
+        [FiltroAgregarCabeceras("accion", "obtener-autores")]
+
         public async Task<IEnumerable<AutorDTO>> Get([FromQuery]PaginacionDTO paginacionDTO)
         {
             var queryable = context.Autores.AsQueryable();
@@ -61,7 +65,7 @@ namespace Biblioteca.Controllers
             await context.SaveChangesAsync();
             await outputCacheStore.EvictByTagAsync(cache, default);
             var autorDTO = mapper.Map<AutorDTO>(autor);
-            return CreatedAtRoute("ObtenerAutor", new { id = autor.Id }, autorDTO);
+            return CreatedAtRoute("ObtenerAutorV1", new { id = autor.Id }, autorDTO);
         }
 
 
@@ -79,19 +83,19 @@ namespace Biblioteca.Controllers
             await context.SaveChangesAsync();
             await outputCacheStore.EvictByTagAsync(cache, default);//actualiza cache
             var autorDTO = mapper.Map<AutorDTO>(autor);
-            return CreatedAtRoute("ObtenerAutor", new { id = autor.Id }, autorDTO);
+            return CreatedAtRoute("ObtenerAutorV1", new { id = autor.Id }, autorDTO);
         }
 
 
 
 
-        [HttpGet("{id:int}",Name ="ObtenerAutor")]//api/autores/id?incluirLibros=True|false
+        [HttpGet("{id:int}",Name ="ObtenerAutorV1")]//api/autores/id?incluirLibros=True|false
         [AllowAnonymous]
         [EndpointSummary("Obtiene autor por id")]
         [EndpointDescription("Obtiene un autor por id. Incluye sus libros. Si el autor no existe retorna 404.")]
         [ProducesResponseType<AutorConLibrosDTO>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [OutputCache(Tags = [cache])]
+        //[OutputCache(Tags = [cache])]
         public async Task<ActionResult<AutorConLibrosDTO>> Get([Description("El Id del autor")]int id)
         {
             var autor= await context.Autores

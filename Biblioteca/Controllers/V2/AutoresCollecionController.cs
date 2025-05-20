@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Biblioteca.Controllers
+namespace Biblioteca.Controllers.V2
 {
     [ApiController]
-    [Route("api/autores-coleccion")]
+    [Route("api/v2/autores-coleccion")]
     [Authorize(Policy = "esadmin")]
     public class AutoresCollecionController :ControllerBase
     {
@@ -22,21 +22,7 @@ namespace Biblioteca.Controllers
             this.mapper = mapper;
         }
 
-
-
-        [HttpPost]
-        public async Task<ActionResult> Post(IEnumerable<AutorCreacionDTO> autoresCreacionDTO)
-        {
-            var autores = mapper.Map<IEnumerable<Autor>>(autoresCreacionDTO);
-            context.AddRange(autores);
-            await context.SaveChangesAsync();
-            var autoresDTO = mapper.Map<IEnumerable<AutorDTO>>(autores);
-            var ids= autores.Select(x => x.Id);
-            var idsString = string.Join(",", ids);
-            return CreatedAtRoute("ObtenerAutoresPorIds", new { ids = idsString }, autoresDTO);
-        }
-
-        [HttpGet("{ids}",Name ="ObtenerAutoresPorIds")] //api/autoresColeccion/1,2,3
+        [HttpGet("{ids}", Name = "ObtenerAutoresPorIdsV2")] //api/autoresColeccion/1,2,3
         public async Task<ActionResult<List<AutorConLibrosDTO>>> Get(string ids)
         {
             var idsColeccion = new List<int>();
@@ -52,23 +38,36 @@ namespace Biblioteca.Controllers
                 ModelState.AddModelError(nameof(ids), "Ningún Id válido fue encontrado");
                 return ValidationProblem();
             }
-            
+
             var autores = await context.Autores
                 .Include(autor => autor.Libros)
                     .ThenInclude(autor => autor.Libro)
                 .Where(x => idsColeccion.Contains(x.Id))
                 .ToListAsync();
 
-            if (autores.Count !=idsColeccion.Count)
+            if (autores.Count != idsColeccion.Count)
             {
                 return NotFound();
             }
 
             var autoresDTO = mapper.Map<List<AutorConLibrosDTO>>(autores);
             return autoresDTO;
-
-
-            
         }
+
+
+
+        [HttpPost]
+        public async Task<ActionResult> Post(IEnumerable<AutorCreacionDTO> autoresCreacionDTO)
+        {
+            var autores = mapper.Map<IEnumerable<Autor>>(autoresCreacionDTO);
+            context.AddRange(autores);
+            await context.SaveChangesAsync();
+            var autoresDTO = mapper.Map<IEnumerable<AutorDTO>>(autores);
+            var ids= autores.Select(x => x.Id);
+            var idsString = string.Join(",", ids);
+            return CreatedAtRoute("ObtenerAutoresPorIdsV2", new { ids = idsString }, autoresDTO);
+        }
+
+        
     }
 }

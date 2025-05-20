@@ -12,10 +12,10 @@
       "name": "MIT",
       "url": "https://opensource.org/license/mit/"
     },
-    "version": "v1"
+    "version": "v2"
   },
   "paths": {
-    "/api/v1/listado-de-autores": {
+    "/api/v2/listado-de-autores": {
       "get": {
         "tags": [
           "Autores"
@@ -71,7 +71,7 @@
         }
       }
     },
-    "/api/v1/autores": {
+    "/api/v2/autores": {
       "get": {
         "tags": [
           "Autores"
@@ -166,7 +166,7 @@
         ]
       }
     },
-    "/api/v1/autores/con-foto": {
+    "/api/v2/autores/con-foto": {
       "post": {
         "tags": [
           "Autores"
@@ -232,14 +232,14 @@
         ]
       }
     },
-    "/api/v1/autores/{id}": {
+    "/api/v2/autores/{id}": {
       "get": {
         "tags": [
           "Autores"
         ],
         "summary": "Obtiene autor por id",
         "description": "Obtiene un autor por id. Incluye sus libros. Si el autor no existe retorna 404.",
-        "operationId": "ObtenerAutorV1",
+        "operationId": "ObtenerAutorV2",
         "parameters": [
           {
             "name": "id",
@@ -250,6 +250,14 @@
               "type": "integer",
               "description": "El Id del autor",
               "format": "int32"
+            }
+          },
+          {
+            "name": "incluirLibros",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
         ],
@@ -460,7 +468,7 @@
         ]
       }
     },
-    "/api/v1/autores/filtrar": {
+    "/api/v2/autores/filtrar": {
       "get": {
         "tags": [
           "Autores"
@@ -562,12 +570,12 @@
         }
       }
     },
-    "/api/v1/autores-coleccion/{ids}": {
+    "/api/v2/autores-coleccion/{ids}": {
       "get": {
         "tags": [
           "AutoresCollecion"
         ],
-        "operationId": "ObtenerAutoresPorIdsV1",
+        "operationId": "ObtenerAutoresPorIdsV2",
         "parameters": [
           {
             "name": "ids",
@@ -616,7 +624,7 @@
         ]
       }
     },
-    "/api/v1/autores-coleccion": {
+    "/api/v2/autores-coleccion": {
       "post": {
         "tags": [
           "AutoresCollecion"
@@ -669,7 +677,7 @@
         ]
       }
     },
-    "/api/v1/libros/{libroId}/comentarios": {
+    "/api/v2/libros/{libroId}/comentarios": {
       "get": {
         "tags": [
           "Comentarios"
@@ -768,12 +776,12 @@
         ]
       }
     },
-    "/api/v1/libros/{libroId}/comentarios/{id}": {
+    "/api/v2/libros/{libroId}/comentarios/{id}": {
       "get": {
         "tags": [
           "Comentarios"
         ],
-        "operationId": "ObtenerComentarioV1",
+        "operationId": "ObtenerComentarioV2",
         "parameters": [
           {
             "name": "id",
@@ -923,7 +931,7 @@
         ]
       }
     },
-    "/api/v1/libros": {
+    "/api/v2/libros": {
       "get": {
         "tags": [
           "Libros"
@@ -1018,12 +1026,12 @@
         ]
       }
     },
-    "/api/v1/libros/{id}": {
+    "/api/v2/libros/{id}": {
       "get": {
         "tags": [
           "Libros"
         ],
-        "operationId": "ObtenerLibroV1",
+        "operationId": "ObtenerLibroV2",
         "parameters": [
           {
             "name": "id",
@@ -1135,7 +1143,7 @@
         ]
       }
     },
-    "/api/v1/usuarios": {
+    "/api/v2/usuarios": {
       "get": {
         "tags": [
           "Usuarios"
@@ -1212,7 +1220,7 @@
         }
       }
     },
-    "/api/v1/usuarios/registro": {
+    "/api/v2/usuarios/registro": {
       "post": {
         "tags": [
           "Usuarios"
@@ -1265,7 +1273,7 @@
         }
       }
     },
-    "/api/v1/usuarios/login": {
+    "/api/v2/usuarios/login": {
       "post": {
         "tags": [
           "Usuarios"
@@ -1318,7 +1326,7 @@
         }
       }
     },
-    "/api/v1/usuarios/renovar-token": {
+    "/api/v2/usuarios/renovar-token": {
       "get": {
         "tags": [
           "Usuarios"
@@ -1352,7 +1360,7 @@
         ]
       }
     },
-    "/api/v1/usuarios/hacer-admin": {
+    "/api/v2/usuarios/hacer-admin": {
       "post": {
         "tags": [
           "Usuarios"
@@ -1388,7 +1396,7 @@
         }
       }
     },
-    "/api/v1/usuarios/remover-admin": {
+    "/api/v2/usuarios/remover-admin": {
       "post": {
         "tags": [
           "Usuarios"
