@@ -37,7 +37,7 @@ namespace Biblioteca.Controllers.V1
             this.mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name ="ObtenerUsuarioV1")]
         [Authorize(Policy = "esadmin")]
         public async Task<IEnumerable<UsuarioDTO>> Get()
         {
@@ -46,7 +46,7 @@ namespace Biblioteca.Controllers.V1
             return usuariosDTO;
         }
 
-        [HttpPost("registro")]
+        [HttpPost("registro",Name = "RegistroUsuarioV1")]
         public async Task<ActionResult<RespuestaAutenticacionDTO>> Registrar(
             CredencialesUsuarioDTO credencialesUsuarioDTO)
         {
@@ -74,7 +74,7 @@ namespace Biblioteca.Controllers.V1
             }
         }
 
-        [HttpPost("login")]
+        [HttpPost("login",Name ="LoginUsuarioV1")]
         public async Task<ActionResult<RespuestaAutenticacionDTO>> Login(
             CredencialesUsuarioDTO credencialesUsuarioDTO)
         {
@@ -98,7 +98,7 @@ namespace Biblioteca.Controllers.V1
             }
         }
 
-        [HttpPut]
+        [HttpPut(Name ="ActualizarUsuarioV1")]
         //[Authorize]
         public async Task<ActionResult> Put(ActualizarUsuarioDTO actualizarUsuarioDTO)
         {
@@ -115,7 +115,7 @@ namespace Biblioteca.Controllers.V1
             return NoContent();
         }
 
-        [HttpGet("renovar-token")]
+        [HttpGet("renovar-token",Name ="RenovarTokenV1")]
         [Authorize]
         public async Task<ActionResult<RespuestaAutenticacionDTO>> RenovarToken()
         {
@@ -132,7 +132,7 @@ namespace Biblioteca.Controllers.V1
             return respuestaAutenticacion;
         }
 
-        [HttpPost("hacer-admin")]
+        [HttpPost("hacer-admin",Name ="CrearAdminV1")]
         //[Authorize(Policy = "esadmin")]
         public async Task<ActionResult> HacerAdmin(EditarClaimDTO editarClaimDTO)
         {
@@ -147,7 +147,7 @@ namespace Biblioteca.Controllers.V1
             return NoContent();
         }
 
-        [HttpPost("remover-admin")]
+        [HttpPost("remover-admin",Name ="BorrarAdminV1")]
         [Authorize(Policy = "esadmin")]
         public async Task<ActionResult> RemoverAdmin(EditarClaimDTO editarClaimDTO)
         {

@@ -15,6 +15,103 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/autores": {
+      "get": {
+        "tags": [
+          "Autores"
+        ],
+        "operationId": "ObtenerAutoresV1",
+        "parameters": [
+          {
+            "name": "Pagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "RecordsPorPagina",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AutorDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AutorDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AutorDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Autores"
+        ],
+        "operationId": "CrearAutorV1",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutorCreacionDTO"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutorCreacionDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutorCreacionDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutorCreacionDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/listado-de-autores": {
       "get": {
         "tags": [
@@ -71,106 +168,12 @@
         }
       }
     },
-    "/api/v1/autores": {
-      "get": {
-        "tags": [
-          "Autores"
-        ],
-        "parameters": [
-          {
-            "name": "Pagina",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "RecordsPorPagina",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AutorDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AutorDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AutorDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Autores"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutorCreacionDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "Bearer": [ ]
-          }
-        ]
-      }
-    },
     "/api/v1/autores/con-foto": {
       "post": {
         "tags": [
           "Autores"
         ],
+        "operationId": "CrearAutorConFotoV1",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -251,6 +254,14 @@
               "description": "El Id del autor",
               "format": "int32"
             }
+          },
+          {
+            "name": "incluirHeaters",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           }
         ],
         "responses": {
@@ -300,6 +311,7 @@
         "tags": [
           "Autores"
         ],
+        "operationId": "ActuañlizarAutorV1",
         "parameters": [
           {
             "name": "id",
@@ -375,6 +387,7 @@
         "tags": [
           "Autores"
         ],
+        "operationId": "PatchAutorV1",
         "parameters": [
           {
             "name": "id",
@@ -437,6 +450,7 @@
         "tags": [
           "Autores"
         ],
+        "operationId": "BorrarAutorV1",
         "parameters": [
           {
             "name": "id",
@@ -465,6 +479,7 @@
         "tags": [
           "Autores"
         ],
+        "operationId": "FiltrarAutoresV1",
         "parameters": [
           {
             "name": "Pagina",
@@ -621,6 +636,7 @@
         "tags": [
           "AutoresCollecion"
         ],
+        "operationId": "CrearAutoresV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -674,6 +690,7 @@
         "tags": [
           "Comentarios"
         ],
+        "operationId": "ObtenerComentariosV1",
         "parameters": [
           {
             "name": "libroId",
@@ -721,6 +738,7 @@
         "tags": [
           "Comentarios"
         ],
+        "operationId": "CrearComentarioV1",
         "parameters": [
           {
             "name": "libroId",
@@ -820,6 +838,7 @@
         "tags": [
           "Comentarios"
         ],
+        "operationId": "PatchComentarioV1",
         "parameters": [
           {
             "name": "id",
@@ -891,6 +910,7 @@
         "tags": [
           "Comentarios"
         ],
+        "operationId": "BorrarComentarioV1",
         "parameters": [
           {
             "name": "libroId",
@@ -928,6 +948,7 @@
         "tags": [
           "Libros"
         ],
+        "operationId": "ObtenerLibrosV1",
         "parameters": [
           {
             "name": "Pagina",
@@ -982,6 +1003,7 @@
         "tags": [
           "Libros"
         ],
+        "operationId": "CrearLibroV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1062,6 +1084,7 @@
         "tags": [
           "Libros"
         ],
+        "operationId": "ActualizarLibroV1",
         "parameters": [
           {
             "name": "id",
@@ -1112,6 +1135,7 @@
         "tags": [
           "Libros"
         ],
+        "operationId": "BorrarLibroV1",
         "parameters": [
           {
             "name": "id",
@@ -1135,11 +1159,51 @@
         ]
       }
     },
+    "/api/v1": {
+      "get": {
+        "tags": [
+          "Root"
+        ],
+        "operationId": "ObtenerRootV1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DatosHATEOASDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DatosHATEOASDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DatosHATEOASDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/usuarios": {
       "get": {
         "tags": [
           "Usuarios"
         ],
+        "operationId": "ObtenerUsuarioV1",
         "responses": {
           "200": {
             "description": "OK",
@@ -1181,6 +1245,7 @@
         "tags": [
           "Usuarios"
         ],
+        "operationId": "ActualizarUsuarioV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1217,6 +1282,7 @@
         "tags": [
           "Usuarios"
         ],
+        "operationId": "RegistroUsuarioV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1270,6 +1336,7 @@
         "tags": [
           "Usuarios"
         ],
+        "operationId": "LoginUsuarioV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1323,6 +1390,7 @@
         "tags": [
           "Usuarios"
         ],
+        "operationId": "RenovarTokenV1",
         "responses": {
           "200": {
             "description": "OK",
@@ -1357,6 +1425,7 @@
         "tags": [
           "Usuarios"
         ],
+        "operationId": "CrearAdminV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1393,6 +1462,7 @@
         "tags": [
           "Usuarios"
         ],
+        "operationId": "BorrarAdminV1",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1448,6 +1518,13 @@
         ],
         "type": "object",
         "properties": {
+          "enlaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatosHATEOASDTO"
+            },
+            "nullable": true
+          },
           "id": {
             "type": "integer",
             "format": "int32"
@@ -1503,6 +1580,13 @@
         ],
         "type": "object",
         "properties": {
+          "enlaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatosHATEOASDTO"
+            },
+            "nullable": true
+          },
           "id": {
             "type": "integer",
             "format": "int32"
@@ -1577,6 +1661,24 @@
           "password": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DatosHATEOASDTO": {
+        "type": "object",
+        "properties": {
+          "enlace": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "metodo": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
