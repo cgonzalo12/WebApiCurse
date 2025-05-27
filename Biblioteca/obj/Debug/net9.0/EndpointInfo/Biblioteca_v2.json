@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.4",
   "info": {
-    "title": "Biblioteca API",
+    "title": "Biblioteca API v2",
     "description": "Este es un web Api para trabajr con autores y libros",
     "contact": {
       "name": "Capararo Gonzalo",

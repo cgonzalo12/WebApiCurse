@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j4S2676DEShNc9npUbF6s+YzAhFga38d5bxXy+ojfDU=",
+  "Hash": "nUD+cPFSuTfDlq6+VGdZ/ZYkeWskQbD50Mqdpd8/mbw=",
   "Source": "Biblioteca",
   "BasePath": "_content/Biblioteca",
   "Mode": "Default",
@@ -62,7 +62,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 21:31:40 GMT"
+          "Value": "Tue, 20 May 2025 20:59:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -107,7 +107,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 21:31:40 GMT"
+          "Value": "Tue, 20 May 2025 20:59:46 GMT"
         },
         {
           "Name": "Cache-Control",

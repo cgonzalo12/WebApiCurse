@@ -6,7 +6,7 @@ namespace Biblioteca.Swagger
     {
         public void Apply(ControllerModel controller)
         {
-            //ejemplo:"controller.v1"
+            //ejemplo: "controller.v1"
             var namespaceDelControlador = controller.ControllerType.Namespace;
             var version = namespaceDelControlador?.Split('.').Last().ToLower();
             controller.ApiExplorer.GroupName = version;

@@ -84,6 +84,26 @@ builder.Services.AddAuthorization(opciones =>
 
 builder.Services.AddSwaggerGen(opciones =>
 {
+    //version 2 V2
+    opciones.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v2",
+        Title = "Biblioteca API v2",
+        Description = "Este es un web Api para trabajr con autores y libros",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Email = "cap.gonzalo12@gmail.com",
+            Name = "Capararo Gonzalo",
+            Url = new Uri("https://gonzalo.log")
+        },
+        License = new Microsoft.OpenApi.Models.OpenApiLicense
+        {
+            Name = "MIT",
+            Url = new Uri("https://opensource.org/license/mit/")
+        }
+    });
+
+
     opciones.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Version = "v1",
@@ -101,24 +121,7 @@ builder.Services.AddSwaggerGen(opciones =>
             Url = new Uri("https://opensource.org/license/mit/")
         }
     });
-    //version 2 V2
-    opciones.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
-    {
-        Version = "v2",
-        Title = "Biblioteca API",
-        Description = "Este es un web Api para trabajr con autores y libros",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact
-        {
-            Email = "cap.gonzalo12@gmail.com",
-            Name = "Capararo Gonzalo",
-            Url = new Uri("https://gonzalo.log")
-        },
-        License = new Microsoft.OpenApi.Models.OpenApiLicense
-        {
-            Name = "MIT",
-            Url = new Uri("https://opensource.org/license/mit/")
-        }
-    });
+    
 
 
 
