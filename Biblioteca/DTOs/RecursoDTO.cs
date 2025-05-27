@@ -2,6 +2,6 @@
 {
     public class RecursoDTO
     {
-        public List<datosHATEOASDTO> Enlaces { get; set; } = [];
+        public List<DatosHATEOASDTO> Enlaces { get; set; } = [];
     }
 }

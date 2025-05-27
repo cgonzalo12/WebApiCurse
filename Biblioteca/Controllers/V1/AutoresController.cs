@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel;
 using System.Linq.Dynamic.Core;
@@ -18,8 +19,8 @@ namespace Biblioteca.Controllers.V1
     [ApiController]
     [Route("api/v1/autores")]
     [Authorize(Policy = "esadmin")]
-    [FiltroAgregarCabeceras("controladores","autores")]
-    public class AutoresController :ControllerBase
+    [FiltroAgregarCabeceras("controladores", "autores")]
+    public class AutoresController : ControllerBase
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
@@ -29,8 +30,8 @@ namespace Biblioteca.Controllers.V1
         private const string contenedor = "autores";
         private const string cache = "autores-obtener";
 
-        public AutoresController(ApplicationDbContext context,IMapper mapper,
-            IAlmacenadorArchivos almacenadorArchivos,ILogger<AutoresController> logger,
+        public AutoresController(ApplicationDbContext context, IMapper mapper,
+            IAlmacenadorArchivos almacenadorArchivos, ILogger<AutoresController> logger,
             IOutputCacheStore outputCacheStore)
         {
             this.context = context;
@@ -39,26 +40,26 @@ namespace Biblioteca.Controllers.V1
             this.logger = logger;
             this.outputCacheStore = outputCacheStore;
         }
-        [HttpGet(Name ="ObtenerAutoresV1")]
+        [HttpGet(Name = "ObtenerAutoresV1")]
         [HttpGet("/api/v1/listado-de-autores")]
         [AllowAnonymous]
         //[OutputCache(Tags = [cache])]
         [ServiceFilter<MiFiltroDeAccion>()]
         [FiltroAgregarCabeceras("accion", "obtener-autores")]
 
-        public async Task<IEnumerable<AutorDTO>> Get([FromQuery]PaginacionDTO paginacionDTO)
+        public async Task<IEnumerable<AutorDTO>> Get([FromQuery] PaginacionDTO paginacionDTO)
         {
             var queryable = context.Autores.AsQueryable();
             await HttpContext.InsertarParametrosPaginacionCabecera(queryable);
-            var autores=await queryable.OrderBy(x=>x.Nombres).Paginar(paginacionDTO).ToListAsync();
+            var autores = await queryable.OrderBy(x => x.Nombres).Paginar(paginacionDTO).ToListAsync();
             var autoresDTO = mapper.Map<IEnumerable<AutorDTO>>(autores);
             return autoresDTO;
         }
 
 
 
-        [HttpPost(Name ="CrearAutorV1")]
-        public async Task<ActionResult> Post( AutorCreacionDTO autorCreacionDTO)
+        [HttpPost(Name = "CrearAutorV1")]
+        public async Task<ActionResult> Post(AutorCreacionDTO autorCreacionDTO)
         {
             var autor = mapper.Map<Autor>(autorCreacionDTO);
             context.Add(autor);
@@ -70,8 +71,8 @@ namespace Biblioteca.Controllers.V1
 
 
 
-        [HttpPost("con-foto",Name ="CrearAutorConFotoV1")]
-        public async Task<ActionResult> PostConFoto([FromForm]AutorCreacionDTOConFoto autorCreacionDTOConFoto)
+        [HttpPost("con-foto", Name = "CrearAutorConFotoV1")]
+        public async Task<ActionResult> PostConFoto([FromForm] AutorCreacionDTOConFoto autorCreacionDTOConFoto)
         {
             var autor = mapper.Map<Autor>(autorCreacionDTOConFoto);
             if (autorCreacionDTOConFoto.Foto is not null)
@@ -89,32 +90,63 @@ namespace Biblioteca.Controllers.V1
 
 
 
-        [HttpGet("{id:int}",Name ="ObtenerAutorV1")]//api/autores/id?incluirLibros=True|false
+        [HttpGet("{id:int}", Name = "ObtenerAutorV1")]//api/autores/id?incluirLibros=True|false
         [AllowAnonymous]
         [EndpointSummary("Obtiene autor por id")]
         [EndpointDescription("Obtiene un autor por id. Incluye sus libros. Si el autor no existe retorna 404.")]
         [ProducesResponseType<AutorConLibrosDTO>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         //[OutputCache(Tags = [cache])]
-        public async Task<ActionResult<AutorConLibrosDTO>> Get([Description("El Id del autor")]int id)
+        public async Task<ActionResult<AutorConLibrosDTO>> Get([Description("El Id del autor")] int id,
+            [FromQuery] bool incluirHeaters = false)
         {
-            var autor= await context.Autores
-                .Include(x=>x.Libros)
-                    .ThenInclude(x=>x.Libro)
+            var autor = await context.Autores
+                .Include(x => x.Libros)
+                    .ThenInclude(x => x.Libro)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (autor is null)
             {
                 return NotFound();
             }
             var autorDTO = mapper.Map<AutorConLibrosDTO>(autor);
+            if (incluirHeaters)
+            {
+                GenerarEnlaces(autorDTO);
+            }
+
             return autorDTO;
         }
 
-        [HttpGet("filtrar",Name ="FiltrarAutoresV1")]
+        private void GenerarEnlaces(AutorDTO autorDTO)
+        {
+            autorDTO.Enlaces.Add(
+                new DatosHATEOASDTO(Enlace: Url.Link("ObtenerAutorV1", new { id = autorDTO.Id })!,
+                Descripcion: "self",
+                Metodo: "GET"));
+
+            autorDTO.Enlaces.Add(
+                new DatosHATEOASDTO(Enlace: Url.Link("ActualizarAutorV1", new { id = autorDTO.Id })!,
+                Descripcion: "autor-actualizar",
+                Metodo: "PUT"));
+
+            autorDTO.Enlaces.Add(
+                new DatosHATEOASDTO(Enlace: Url.Link("PatchAutorV1", new { id = autorDTO.Id })!,
+                Descripcion: "autor-patch",
+                Metodo: "PATCH"));
+
+            autorDTO.Enlaces.Add(
+                new DatosHATEOASDTO(Enlace: Url.Link("BorrarAutorV1", new { id = autorDTO.Id })!,
+                Descripcion: "autor-borrar",
+                Metodo: "DELETE"));
+
+        }
+
+
+        [HttpGet("filtrar", Name = "FiltrarAutoresV1")]
         [AllowAnonymous]
         public async Task<ActionResult> Filtrar([FromQuery] AutorFiltroDTO autorFiltroDTO)
         {
-            var queryable= context.Autores.AsQueryable();
+            var queryable = context.Autores.AsQueryable();
 
             if (!string.IsNullOrEmpty(autorFiltroDTO.Nombres))
             {
@@ -137,7 +169,7 @@ namespace Biblioteca.Controllers.V1
                 }
                 else
                 {
-                    queryable= queryable.Where(x => x.Foto == null);
+                    queryable = queryable.Where(x => x.Foto == null);
                 }
             }
             if (autorFiltroDTO.TieneLibros.HasValue)
@@ -167,7 +199,7 @@ namespace Biblioteca.Controllers.V1
                 }
                 catch (Exception ex)
                 {
-                    queryable= queryable.OrderBy(x => x.Nombres);
+                    queryable = queryable.OrderBy(x => x.Nombres);
                     logger.LogError(ex.Message, ex);
                     return BadRequest($"No se puede ordenar por el campo {autorFiltroDTO.CamposOrdenar}");
                 }
@@ -178,7 +210,7 @@ namespace Biblioteca.Controllers.V1
             }
 
 
-            var autores= await queryable
+            var autores = await queryable
                 .Paginar(autorFiltroDTO.PaginacionDTO)
                 .ToListAsync();
             if (autorFiltroDTO.IncluirLibros)
@@ -191,10 +223,10 @@ namespace Biblioteca.Controllers.V1
                 var autoresDTO = mapper.Map<IEnumerable<AutorDTO>>(autores);
                 return Ok(autoresDTO);
             }
-            
+
         }
 
-        [HttpPut("{id:int}",Name ="ActualizarActorV1")]
+        [HttpPut("{id:int}", Name = "ActuañlizarAutorV1")]
         public async Task<ActionResult> Put(int id, [FromForm] AutorCreacionDTOConFoto autorCreacionDTO)
         {
             var existeAutor = await context.Autores.AnyAsync(x => x.Id == id);
@@ -206,13 +238,13 @@ namespace Biblioteca.Controllers.V1
             autor.Id = id;
             if (autorCreacionDTO.Foto is not null)
             {
-                var fotoActual= await context.Autores
-                    .Where(x=>x.Id==id)
+                var fotoActual = await context.Autores
+                    .Where(x => x.Id == id)
                     .Select(x => x.Foto)
                     .FirstOrDefaultAsync();
 
-                var url=await almacenadorArchivos.Editar(fotoActual,contenedor,autorCreacionDTO.Foto);
-                autor.Foto= url;
+                var url = await almacenadorArchivos.Editar(fotoActual, contenedor, autorCreacionDTO.Foto);
+                autor.Foto = url;
             }
             context.Update(autor);
             await context.SaveChangesAsync();
@@ -223,7 +255,7 @@ namespace Biblioteca.Controllers.V1
         }
 
 
-        [HttpPatch("{id:int}",Name ="PtchAutorV1")]
+        [HttpPatch("{id:int}", Name = "PatchAutorV1")]
         public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<AutorPatchDTO> patchDoc)
         {
             if (patchDoc is null)
@@ -237,9 +269,9 @@ namespace Biblioteca.Controllers.V1
             }
             var autorPatchDto = mapper.Map<AutorPatchDTO>(autorDB);
 
-            patchDoc.ApplyTo(autorPatchDto,ModelState);
+            patchDoc.ApplyTo(autorPatchDto, ModelState);
 
-            var esValido=TryValidateModel(autorPatchDto);
+            var esValido = TryValidateModel(autorPatchDto);
 
             if (!esValido)
             {
@@ -251,10 +283,10 @@ namespace Biblioteca.Controllers.V1
             return NoContent();
         }
 
-        [HttpDelete("{id:int}",Name ="BorrarAutorV1")]
+        [HttpDelete("{id:int}", Name = "BorrarAutorV1")]
         public async Task<ActionResult> Delete(int id)
         {
-            var autor= await context.Autores.FirstOrDefaultAsync(x => x.Id == id);
+            var autor = await context.Autores.FirstOrDefaultAsync(x => x.Id == id);
             if (autor is null)
             {
                 return NotFound();
