@@ -7,7 +7,7 @@ namespace Biblioteca.DTOs
     {
         [Required(ErrorMessage = "el campo nombre es requerido!")]
         [StringLength(150, ErrorMessage = "el campo {0} debe tener {1} caracteres o menos")]
-        [PrimeraLetraMAtuscula]
+        [PrimeraLetraMatuscula]
         public required string Nombres { get; set; }
         [Required(ErrorMessage = "el campo apellido es requerido!")]
         [StringLength(20, ErrorMessage = "el campo {0} debe tener {1} caracteres o menos")]

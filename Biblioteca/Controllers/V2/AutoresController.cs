@@ -18,7 +18,7 @@ namespace Biblioteca.Controllers.V2
     [ApiController]
     [Route("api/v2/autores")]
     [Authorize(Policy = "esadmin")]
-    [FiltroAgregarCabeceras("controladores","autores")]
+
     public class AutoresController :ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -43,8 +43,7 @@ namespace Biblioteca.Controllers.V2
         [HttpGet("/api/v2/listado-de-autores")]
         [AllowAnonymous]
         //[OutputCache(Tags = [cache])]
-        [ServiceFilter<MiFiltroDeAccion>()]
-        [FiltroAgregarCabeceras("accion", "obtener-autores")]
+
 
         public async Task<IEnumerable<AutorDTO>> Get([FromQuery]PaginacionDTO paginacionDTO)
         {
